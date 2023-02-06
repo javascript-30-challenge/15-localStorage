@@ -76,6 +76,7 @@ const deleteItem = (e) => {
     const newItems = items.filter(item => item !== items[event.target.id]);
     localStorage.setItem('items', JSON.stringify(newItems));
     populateList(newItems, itemsList);  
+    window.location.reload();
 }
 
 // Event Listeners
