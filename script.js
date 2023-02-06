@@ -8,7 +8,7 @@ const clearListButton = document.querySelector('#clearAll');
 const clearCheckedButton = document.querySelector('#clearChecked');
 
 // Helper Variables
-const items = JSON.parse(localStorage.getItem('items')) || [];
+let items = JSON.parse(localStorage.getItem('items')) || [];
 
 // Helper Functions
 const addItem = (e) => {
@@ -48,7 +48,6 @@ const checkItem = (e) => {
 
 const checkAll = () => {
     const items = JSON.parse(localStorage.getItem('items'));
-    console.log(items);
     items.forEach(item => {
         item.done = true;
     });
@@ -72,11 +71,10 @@ const clearList = () => {
 }
 
 const deleteItem = (e) => {
-    const items = JSON.parse(localStorage.getItem('items'));
     const newItems = items.filter(item => item !== items[event.target.id]);
+    items = [...newItems];
     localStorage.setItem('items', JSON.stringify(newItems));
     populateList(newItems, itemsList);  
-    window.location.reload();
 }
 
 // Event Listeners
